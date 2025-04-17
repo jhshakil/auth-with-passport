@@ -180,10 +180,16 @@ const resetPassword = async (payload: { email: string; password: string }) => {
   return user;
 };
 
+const getUserIntoDB = async (email: string) => {
+  const user = await User.findOne({ email }).populate('authId');
+  return user;
+};
+
 export const AuthServices = {
   createUserIntoDB,
   loginUser,
   refreshToken,
   forgetPassword,
   resetPassword,
+  getUserIntoDB,
 };

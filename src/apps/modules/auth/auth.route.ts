@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { AuthControllers } from './auth.controller';
 import validateRequest from '../../middlewares/validateRequest';
 import { AuthValidations } from './auth.validation';
+import { authenticate } from '../../middlewares/authenticate';
 
 const router = Router();
 
@@ -24,5 +25,7 @@ router.post(
 
 router.post('/forget-password', AuthControllers.forgetPassword);
 router.post('/reset-password', AuthControllers.resetPassword);
+
+router.get('/me', authenticate, AuthControllers.getUser);
 
 export const AuthRouters = router;

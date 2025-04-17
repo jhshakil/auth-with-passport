@@ -3,6 +3,7 @@ import catchAsync from '../../utils/catchAsync';
 import { AuthServices } from './auth.service';
 import config from '../../config';
 import sendResponse from '../../utils/sendResponse';
+import { TAuthUser } from '../../interface/common';
 
 const createUser = catchAsync(async (req, res) => {
   const result = await AuthServices.createUserIntoDB(req.body);
@@ -62,10 +63,21 @@ const resetPassword = catchAsync(async (req, res) => {
   });
 });
 
+const getUser = catchAsync(async (req, res) => {
+  const user = req?.user as TAuthUser;
+  const result = await AuthServices.getUserIntoDB(user?.email as string);
+
+  sendResponse(res, {
+    message: 'Get user successfully',
+    data: result,
+  });
+});
+
 export const AuthControllers = {
   createUser,
   loginUser,
   refreshToken,
   forgetPassword,
   resetPassword,
+  getUser,
 };
