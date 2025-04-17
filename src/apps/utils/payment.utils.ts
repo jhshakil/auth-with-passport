@@ -36,7 +36,6 @@ export const initiatePayment = async (paymentData: TPaymentData) => {
       type: 'json',
     });
 
-    //console.log(response);
     return response.data;
   } catch (err) {
     throw new Error('Payment initiation failed!');

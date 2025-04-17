@@ -12,7 +12,6 @@ export type TAuth = {
   name: string;
   email: string;
   password: string;
-  passwordChangedAt?: Date;
   role: TRole;
   status: TStatus;
   isDeleted: boolean;

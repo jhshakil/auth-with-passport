@@ -13,7 +13,6 @@ const authSchema = new Schema<TAuth>(
       required: true,
       select: 0,
     },
-    passwordChangedAt: { type: Date },
     role: {
       type: String,
       enum: ['admin', 'user'],

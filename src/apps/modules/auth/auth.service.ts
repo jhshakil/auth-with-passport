@@ -106,25 +106,18 @@ const refreshToken = async (token: string) => {
     throw new AppError(httpStatus.NOT_FOUND, 'This user is not found !');
   }
   // // checking if the user is already deleted
-  // const isDeleted = user?.isDeleted;
+  const isDeleted = user?.isDeleted;
 
-  // if (isDeleted) {
-  //   throw new AppError(httpStatus.FORBIDDEN, 'This user is deleted !');
-  // }
+  if (isDeleted) {
+    throw new AppError(httpStatus.FORBIDDEN, 'This user is deleted !');
+  }
 
   // // checking if the user is blocked
-  // const userStatus = user?.status;
+  const userStatus = user?.status;
 
-  // if (userStatus === 'blocked') {
-  //   throw new AppError(httpStatus.FORBIDDEN, 'This user is blocked ! !');
-  // }
-
-  // if (
-  //   user.passwordChangedAt &&
-  //   User.isJWTIssuedBeforePasswordChanged(user.passwordChangedAt, iat as number)
-  // ) {
-  //   throw new AppError(httpStatus.UNAUTHORIZED, 'You are not authorized !');
-  // }
+  if (userStatus === 'blocked') {
+    throw new AppError(httpStatus.FORBIDDEN, 'This user is blocked ! !');
+  }
 
   const jwtPayload = {
     email: user.email,
