@@ -16,7 +16,7 @@ app.use(
 );
 
 // application routes
-app.use('/api', router);
+app.use('/', router);
 
 app.get('/', (req: Request, res: Response) => {
   const name = 'Hello World!';
