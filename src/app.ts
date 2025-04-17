@@ -3,6 +3,7 @@ import cors from 'cors';
 import router from './apps/routes';
 import globalErrorHandler from './apps/middlewares/globalErrorHandler';
 import notFound from './apps/middlewares/notFound';
+import { globalRateLimiter } from './apps/middlewares/rateLimiter';
 
 const app: Application = express();
 
@@ -14,6 +15,7 @@ app.use(
     credentials: true,
   }),
 );
+app.use(globalRateLimiter);
 
 // application routes
 app.use('/', router);
